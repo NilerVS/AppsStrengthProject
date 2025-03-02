@@ -1,0 +1,59 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'users_app:inicio' %}">
+            <img src="{% static 'img/logo.png' %}" alt="Ares Training" width="100" height="50">
+          </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name ==  'conocecoachinfo' %}active{% endif %}" aria-current="page" href="{% url 'users_app:conocecoachinfo' %}">Conoce al Coach</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name ==  'diapruebainfo' %}active{% endif %}" aria-current="page" href="{% url 'users_app:diapruebainfo' %}">Dia de prueba</a>
+          </li>
+          
+        </ul> 
+  
+      
+          
+      </div>
+      {% if user.is_authenticated %}
+      <div class="navbar-text">
+          <span class="text-black">Bienvenido, <strong>{{ user.nombres }}!</strong></span>
+        
+        {% if user.is_user %}
+            <!-- Mostrar botón para usuarios normales -->
+            <a class="btn btn-outline-info" href="{% url 'users_app:resumenalumno' user.id %}">Mi espacio</a>
+        {% elif user.is_staff %}
+            <!-- Mostrar botón para administradores -->
+            <a class="btn btn-outline-info" href="{% url 'users_app:listaralumnosadmin' %}">Mi espacio</a>
+        {% endif %}
+        
+        <a class="btn btn-outline-danger ms-2" href="{% url 'users_app:logoutuser' %}">Salir</a>
+    </div>
+      {% else %}
+          <a class="btn btn-outline-success" href="{% url 'users_app:loginruser' %}">Ingresar</a>
+      {% endif %}
+      
+    </div>
+  </nav>
+  <ul class="nav nav-underline nav-justified">
+ 
+      <a class="nav-link {% if request.resolver_match.url_name ==  'inicio' %}active{% endif %}" aria-current="page" href="{% url 'users_app:inicio' %}">Inicio</a>
+
+      <a class="nav-link {% if request.resolver_match.url_name ==  'alumnosinfo' %}active{% endif %}" href="{% url 'users_app:alumnosinfo' %}">Alumnos</a>
+
+      <a class="nav-link {% if request.resolver_match.url_name ==  'planesinfo' %}active{% endif %}" href="{% url 'users_app:planesinfo' %}">Planes</a>
+ 
+        <a class="nav-link {% if request.resolver_match.url_name ==  'horarioclaseinfo' %}active{% endif %}" href="{% url 'users_app:horarioclaseinfo' %}">Horarios de clase</a>
+ 
+        <a class="nav-link {% if request.resolver_match.url_name ==  'competenciainfo' %}active{% endif %}" href="{% url 'users_app:competenciainfo' %}">Competencias</a>
+  
+  </ul>
+ 
+</a>

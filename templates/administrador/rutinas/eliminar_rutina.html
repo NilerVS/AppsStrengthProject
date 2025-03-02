@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Ares Training
+{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+{% include 'administrador/baseadministrador.html' %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1>Eliminar Rutina: {{ object.nombre }}</h1>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="alert alert-danger" role="alert">
+                    <h5 class="alert-heading">¿Desea eliminar esta rutina?</h5>
+                    <p>Recuerde que al eliminar se perderá todos los datos de la rutina en la base de datos.</p>
+                </div>
+                <button type="submit" class="btn btn-danger">Si, Confirmar</button>
+                <a href="{% url 'rutina_app:listarrutinasadmin'%}" class="btn btn-secondary">No, regresar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

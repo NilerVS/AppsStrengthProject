@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+ {% load static %}
+
+ {% block title %}
+    Ares Training-Inicio
+ {% endblock title %}
+
+ {% block content %}
+ {% include 'includes/header.html' %}
+
+ <div class="container mt-5 ">
+
+    <h3 class="text-center">Algunos de nuestros planes de entrenamiento</h3>
+    <div class="container mt-5">
+    <div class="d-flex justify-content-center">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4"> <!-- Intercambio de posición -->
+            <img src="{% static 'img/no_foto.jpg' %}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Plan X</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="container mt-2">
+        <div class="d-flex justify-content-center">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Plan x </h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  
+                </div>
+              </div>
+              <div class="col-md-4">
+                <img src="{% static 'img/no_foto.jpg' %}" class="img-fluid rounded-start" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-2">
+        <div class="d-flex justify-content-center">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Plan personalizado</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                 
+                </div>
+              </div>
+              <div class="col-md-4">
+                <img src="{% static 'img/no_foto.jpg' %}" class="img-fluid rounded-start" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+    
+ {% endblock content %}
+    

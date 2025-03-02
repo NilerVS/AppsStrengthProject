@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Ares Training-Dieta 
+{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+{% include 'alumno/basealumno.html' %}
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                {% for dieta in dieta_alumno_por_id %}
+                Fecha de Dieta: {{dieta.fecha}}
+               <!-- {{dieta_alumno_por_id}} -->
+               
+               
+            </li>
+            <li class="list-group-item">
+                Nombre de Dieta: {{dieta.nombre}}
+            </li>
+
+            <li class="list-group-item">
+               
+                Indicaciones: {{ dieta.resumen|safe }}
+            </li>
+
+            <li class="list-group-item">
+               
+                Buena suerte en tu dieta.
+            </li>
+            
+            {% endfor %}
+        </ul>
+        
+    </div>
+    
+</div>
+<!-- Inicialización de CKEditor -->
+<script src="{% static 'ckeditor5-40.1.0/build/ckeditor.js' %}"></script>
+
+<script>
+  ClassicEditor
+    .create(document.querySelector('#id_resumen'))
+    .catch(error => {
+        console.error(error);
+    });
+</script>
+
+
+{% endblock content %}

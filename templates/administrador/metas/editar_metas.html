@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Ares Training-{{form.nombre}}
+{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+{% include 'administrador/baseadministrador.html' %}
+<div class="container mt-5">
+   <h4 class="text-center">Modificar Meta</h4>
+   <div class="row justify-content-center">
+      <div class="col-md-6">
+         <form method="post" class="border p-4 rounded">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+               <label for="{{ form.alumno.id_for_label }}" class="form-label">Alumno</label>
+               {{ form.alumno }}
+           </div>
+           <div class="mb-3">
+            <label class="form-label">Meta en</label>
+            {% for checkbox in form.nombre %}
+                <div class="form-check">
+                    {{ checkbox }}
+                    {{ checkbox.label_tag }}
+                </div>
+            {% endfor %}
+        </div>
+           <!-- <div class="mb-3">
+            <label class="form-label">Meta en</label>
+            {% if form.instance.nombre %}
+                <div class="border p-2" style="background-color: #f0f0f0;">
+                    {{ form.instance.get_nombre_display }}
+                </div>
+            {% else %}
+                {% for checkbox in form.nombre %}
+                    <div class="form-check">
+                        {{ checkbox }}
+                        {{ checkbox.label_tag }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div> -->
+            <div class="mb-3">
+               <label for="{{ form.nombre.id_for_label }}" class="form-label">Peso actual del alumno en Kg.</label>
+               {{ form.peso }}
+            </div>
+            <div class="mb-3">
+               <label for="{{ form.nombre.id_for_label }}" class="form-label">PR en Kg.</label>
+               {{ form.pr }}
+            </div>
+       
+
+            <button type="submit" class="btn btn-primary">Editar Meta</button>
+         </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+
+{% endblock content %}

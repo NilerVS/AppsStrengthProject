@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+ {% load static %}
+
+ {% block title %}
+    Ares Training-Inicio
+ {% endblock title %}
+
+ {% block content %}
+ {% include 'includes/header.html' %}
+
+ <div class="container mt-5">
+   <h4 class="text-center">Iniciar Sesion</h4>
+   <div class="row justify-content-center">
+      <div class="col-md-6">
+         <form  method="post" class="border p-4 rounded">{% csrf_token %}
+            <div class="mb-3">
+               <label for="{{ form.nombre.id_for_label }}" class="form-label">Usuario</label>
+               {{ form.username }}
+           </div>
+           <div class="mb-3">
+            <label for="{{ form.password.id_for_label }}" class="form-label">Contraseña</label>
+            {{ form.password }}
+        </div>
+         <!-- {{form.as_p}} -->
+         <button type="submit" class="btn btn-primary">Acceder</button>
+         </form>
+
+</div>
+</div>
+</div>
+
+    
+ {% endblock content %}
+    

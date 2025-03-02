@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Ares Training
+{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+{% include 'administrador/baseadministrador.html' %}
+<div class="container mt-5">
+   <h4 class="text-center">Registrar Nueva Rutina</h4>
+   <div class="row justify-content-center">
+      <div class="col-md-6">
+         <form method="post" action="{% url 'rutina_app:crearrutinasadmin' %}" class="border p-4 rounded">
+            {% csrf_token %}
+            <div class="mb-3">
+               <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre de rutina</label>
+               {{ form.nombre }}
+            </div>
+            <div class="mb-3">
+               <label for="{{ form.ejercicios.id_for_label }}" class="form-label">Bloc de ejercicios</label>
+               <!-- Cambia el área de texto a CKEditor -->
+               <textarea name="ejercicios" id="ejercicios"></textarea>
+           
+             </div>
+            
+            <button type="submit" class="btn btn-primary">Agregar Rutina</button>
+         </form>
+      </div>
+   </div>
+</div>
+
+<!-- Inicialización de CKEditor -->
+<script src="{% static 'ckeditor5-40.1.0/build/ckeditor.js' %}"></script>
+
+<script>
+ ClassicEditor
+     .create( document.querySelector( '#ejercicios' ) )
+     .catch( error => {
+         console.error( error );
+     } );
+</script>
+
+{% endblock content %}

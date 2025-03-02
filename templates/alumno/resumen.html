@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Ares Training-{{user}}
+{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+
+{% include 'alumno/basealumno.html' %}
+<div class="container">
+   
+<div class="row row-cols-2 row-cols-md-5 g-4 justify-content-center">
+   <div class="col">
+      <h4 class="text-center">{{listar_alumno_por_id.nombres}} {{listar_alumno_por_id.apellidos}}</h4>
+      <div class="card border">
+         
+         <img src="{% static 'img/no_foto.jpg' %}" class="card-img-top" alt="...">
+      </div>
+   </div>
+</div>
+</div>
+<div class="container">
+   <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+      
+       <ul class="list-group list-group-flush">
+           <li class="list-group-item">Plan: {{listar_alumno_por_id.get_plan_display}}</li>
+           <li class="list-group-item">Días de clase: 
+               
+                  {% for clase in listar_alumno_por_id.clases_set.all %}
+                  <span>- {{ clase.nombre }} <span>
+                  {% endfor %}
+               
+            </li>
+           <li class="list-group-item">Fecha de inicio: {{listar_alumno_por_id.fechainicio}}</li>
+           <li class="list-group-item d-flex justify-content-between">
+               <span>Edad: {{listar_alumno_por_id.edad}} </span>
+               <span>Peso: {{ listar_alumno_por_id.metas_set.all.0.peso }}</span>
+               <span>Talla: {{listar_alumno_por_id.talla}}</span>            
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+               <span>Celular: {{listar_alumno_por_id.celular}}</span>
+               <span>#contacto: {{listar_alumno_por_id.celular2}}</span>          
+            </li>
+           <li class="list-group-item">Dirección: {{listar_alumno_por_id.direccion}}</li>
+       </ul>
+   </div>
+</div>
+
+{% endblock content %}

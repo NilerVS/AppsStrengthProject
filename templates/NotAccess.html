@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+ {% load static %}
+
+ {% block title %}
+    Ares Training-Not Access {{user.nombres}}
+ {% endblock title %}
+
+ {% block content %}
+ {% include 'includes/header.html' %}
+
+ <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-danger text-white">Acceso Denegado</div>
+                <div class="card-body">
+                    <h5 class="card-title">Lo siento, no tiene permisos para acceder a esta página.</h5>
+                    <p class="card-text">Si cree que esto es un error, comuníquese con el administrador del sistema.</p>
+                    {% if user.is_user %}
+                    <a href="{% url 'users_app:resumenalumno' user.id %}" class="btn btn-primary">Ir a Mi espacio</a>
+                    {% elif user.is_admin or user.is_staff  %}
+                    <a href="{% url 'users_app:listaralumnosadmin' %}" class="btn btn-primary">Ir a Mi espacio</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ {% endblock content %}

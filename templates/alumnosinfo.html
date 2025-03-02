@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+ {% load static %}
+
+ {% block title %}
+    Ares Training-alumnos
+ {% endblock title %}
+
+ {% block content %}
+ {% include 'includes/header.html' %}
+
+ <div class="container mt-5">
+
+<h3 class="text-center">Te presentamos algunos alumnos de Ares Training</h3>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center mt-5">
+
+{% for e in lista_alumnos %}
+<div class="col">
+    <div class="card">
+    <img src="{% static 'img/no_foto.jpg' %}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"> {{ e.nombres }}</h5>
+      <p class="card-text"></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">fecha de inicio:  {{ e.fechainicio }}</li>
+      <li class="list-group-item">plan: {{ e.get_plan_display }}</li> 
+      
+    
+            {% for meta in e.metas_set.all %}
+            <li class="list-group-item">Peso: {{ meta.peso }}</li>
+            
+            {% endfor %}
+        
+    </li>
+      <li class="list-group-item">red: {{e.redsocial}} </li>
+    </ul>
+</div>
+
+</div>
+{% endfor %}
+</div>
+
+</div>
+    
+ {% endblock content %}
+    

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Historial de Metas - {{alumno.nombre}}
+{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+{% include 'alumno/basealumno.html' %}
+
+<!-- <div class="container">
+    <h2 class="text-center">Historial de Metas</h2>
+    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+        <div class="timeline">
+            {% for meta in metas_alumno_por_id %}
+                <div class="timeline-item {% if forloop.counter|divisibleby:2 %}timeline-inverted{% endif %}">
+                    <div class="timeline-marker {% if forloop.counter|divisibleby:2 %}timeline-marker-inverted{% endif %}"></div>
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">{{ meta.get_nombre_display }}</h4>
+                        <p class="timeline-date"><i class="glyphicon glyphicon-time"></i> {{ meta.fecha }}</p>
+                        <p class="timeline-details">Peso del alumno: {{ meta.peso }} KG , PR: {{ meta.pr }} KG</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+<div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+<div class="container mt-5 mb-5">
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<h4>Personal Record: </h4>     
+			<ul class="timeline">
+                {% for meta in metas_alumno_por_id %}
+				<li>
+					<h5>{{meta.get_nombre_display}}</h5>
+					<a href="#" class="float-right">{{meta.fecha}}</a>
+					<p>Peso del alumno: {{ meta.peso }} KG , PR: {{ meta.pr }} KG</p>
+				</li>
+                {% endfor %}		
+			</ul>
+            
+		</div>
+	</div>
+</div>
+</div>
+</div>
+{% endblock content %}

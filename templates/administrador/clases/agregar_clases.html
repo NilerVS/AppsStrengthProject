@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Ares Training 
+{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+{% include 'administrador/baseadministrador.html' %}
+<div class="container mt-5">
+   <h4 class="text-center">Registrar Nueva Clase</h4>
+   <div class="row justify-content-center">
+      <div class="col-md-6">
+         <form method="post" action="{% url 'rutina_app:crearclasesadmin' %}" class="border p-4 rounded">
+            {% csrf_token %}
+            <div class="mb-3 row">
+               <div class="col-md-6">
+                   <label for="{{ form.fecha.id_for_label }}" class="form-label">Fecha de clase</label>
+                   <!-- Utilizar el input de tipo date para mostrar un calendario emergente -->
+                   <input type="date" id="{{ form.fecha.id_for_label }}" name="{{ form.fecha.name }}" class="form-control" required>
+               </div>
+               <div class="col-md-6">
+                   <label for="{{ form.nombre.id_for_label }}" class="form-label">Dia de clase</label>
+                   <input type="text" id="{{ form.nombre.id_for_label }}" name="{{ form.nombre.name }}" class="form-control" value="{{ form.nombre.value }}" readonly>
+               </div>
+               <div class="mb-3">
+                  <label for="{{ form.hora.id_for_label }}" class="form-label">Hora de clase</label>
+                  <!-- Utilizar el input de tipo time para seleccionar la hora -->
+                  <input type="time" id="{{ form.hora.id_for_label }}" name="{{ form.hora.name }}" class="form-control" required>
+              </div>
+              
+           </div>
+
+            <div class="mb-3">
+               <label for="{{ form.rutina.id_for_label }}" class="form-label">Rutina</label>
+               {{ form.rutina }}
+           </div>
+           
+
+            <div class="mb-3">
+               <label for="{{ form.alumno.id_for_label }}" class="form-label">Alumno</label>
+               {{ form.alumno }}
+           </div>
+
+            
+            <!-- INICIO script para autocompletar el dia de la semana -->
+            <script>
+               document.addEventListener('DOMContentLoaded', function() {
+                  var fechaInput = document.getElementById('{{ form.fecha.id_for_label }}');
+                  var nombreInput = document.getElementById('{{ form.nombre.id_for_label }}');
+
+                  fechaInput.addEventListener('change', function() {
+                     var fechaSeleccionada = fechaInput.value;
+                     var diasSemana = [ 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado','Domingo'];
+                     var fecha = new Date(fechaSeleccionada);
+                     var diaSemana = diasSemana[fecha.getDay()];
+                     nombreInput.value = diaSemana;
+                  });
+               });
+            </script>
+            <!-- FIN script para autocompletar el dia de la semana -->
+            
+            <button type="submit" class="btn btn-primary">Agregar Clase</button>
+         </form>
+      </div>
+   </div>
+</div>
+
+{% endblock content %}

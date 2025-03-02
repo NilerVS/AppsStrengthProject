@@ -1,0 +1,60 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+   Ares Training-{{listar_alumno_por_id.nombre}}
+{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+{% include 'alumno/basealumno.html' %}
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+        
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <h5 class="text-center">Clases para esta semana</h5>
+                <h6 class="text-center">{{ inicio_semana }} al {{ fin_semana }}</h6>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Fecha de clase</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Día</th>
+                            <th scope="col">Rutina</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for clase in clases_semana %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ clase.fecha }}</td>
+                                <td>{{ clase.hora }}</td>
+                                <td>{{ clase.nombre }}</td>
+                                <td><a type="button" class="btn btn-outline-dark btn-sm" href="">{{ clase.rutina.nombre }}</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+                    
+                </table>
+                <li class="list-group-item">
+               
+                    Recuerda asistir a todos tus entrenamientos.
+                </li>
+            </li>
+            
+            <!-- <li class="list-group-item">Cambiar dias:
+                <td><a type="button" class="btn btn-success" href="">Cambiar proximo dia de clase</a></td>
+            </li> -->
+        </ul>
+        
+    </div>
+ 
+
+</div>
+
+{% endblock content %}

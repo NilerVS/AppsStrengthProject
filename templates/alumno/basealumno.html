@@ -1,0 +1,27 @@
+
+<div class="container mt-5">
+
+<h3 class="text-center">Area de alumnos</h3>
+
+<div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center mt-1">
+
+  <ul class="nav nav-tabs nav-fill">
+    <li class="nav-item">
+      <a class="nav-link {% if request.resolver_match.url_name ==  'resumenalumno' %}active{% endif %}" aria-current="page" href="{% url 'users_app:resumenalumno' user.id %}">Resumen</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {% if request.resolver_match.url_name ==  'clasealumnoporid' %}active{% endif %}" href="{% url 'users_app:clasealumnoporid' user.id %}">Dias de clase</a>
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="#">Rutinas</a>
+    </li> -->
+    <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name ==  'dietaalumnoporid' %}active{% endif %}" href="{% url 'dietas_app:dietaalumnoporid' user.id %}">Dietas</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name ==  'vermetasalumnos' %}active{% endif %}" href="{% url 'metas_app:vermetasalumnos' user.id %}">Metas alcanzadas</a>
+    </li>
+  </ul>
+
+</div>
+</div>
